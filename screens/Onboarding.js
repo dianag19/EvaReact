@@ -40,7 +40,7 @@ export default class Onboarding extends React.Component {
                 style={styles.button}
                 color={materialTheme.COLORS.REDLOGO}
                 onPress={() => navigation.navigate('Home')}>
-                INGRESAR COMO ESTUDIANTE
+                INGRESAR COMO ESTUDIANTE v2.0
               </Button>
               <Button
                 shadowless
