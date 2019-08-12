@@ -8,7 +8,7 @@ import materialTheme from '../constants/Theme';
 
 const { height, width } = Dimensions.get('window');
 const iPhoneX = () => Platform.OS === 'ios' && (height === 812 || width === 812 || height === 896 || width === 896);
-
+{/*}
 const ChatButton = ({ isWhite, style, navigation }) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
@@ -20,7 +20,6 @@ const ChatButton = ({ isWhite, style, navigation }) => (
     <Block middle style={styles.notify} />
   </TouchableOpacity>
 );
-
 const BasketButton = ({ isWhite, style, navigation }) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
@@ -32,7 +31,7 @@ const BasketButton = ({ isWhite, style, navigation }) => (
     <Block middle style={styles.notify} />
   </TouchableOpacity>
 );
-
+*/}
 const SearchButton = ({ isWhite, style, navigation }) => (
   <TouchableOpacity style={[styles.button, style]} onPress={() => navigation.navigate('Pro')}>
     <Icon
@@ -53,14 +52,13 @@ class Header extends React.Component {
   renderRight = () => {
     const { white, title, navigation } = this.props;
     const { routeName } = navigation.state;
-
+    {/*}
     if (title === 'Title') {
       return [
         <ChatButton key='chat-title' navigation={navigation} isWhite={white} />,
         <BasketButton key='basket-title' navigation={navigation} isWhite={white} />
       ]
     }
-
     switch (routeName) {
       case 'Home':
         return ([
@@ -105,6 +103,7 @@ class Header extends React.Component {
       default:
         break;
     }
+    */}
   }
 
   renderSearch = () => {

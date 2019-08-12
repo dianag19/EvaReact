@@ -1,7 +1,7 @@
 import React from 'react';
 import { withNavigation } from 'react-navigation';
-import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback } from 'react-native';
-import { Block, Text, theme } from 'galio-framework';
+import { StyleSheet, Dimensions, Image, TouchableWithoutFeedback, ImageBackground } from 'react-native';
+import { Block, Text, theme, Button } from 'galio-framework';
 
 import materialTheme from '../constants/Theme';
 
@@ -19,25 +19,33 @@ class Product extends React.Component {
      
       <Block row={horizontal} card flex style={[styles.product, styles.shadow, style]}>
          {/*ESTE BLOCK ES DIV DE PRODUCTO*/}
-
+        <ImageBackground
+          source={require('../assets/images/background.png')}
+          style={styles.bgImage}
+          resizeMode="cover"
+          >  
          {/*SIMILAR A BOTON DE PRODUCTO // IMAGEN*/}
-        <TouchableWithoutFeedback //onPress={() => navigation.navigate('Pro', { product: product })}
-        >
-          <Block flex style={[styles.imageContainer, styles.shadow]}>
-            {/*Imagen de producto*/}
-            <Image source={{ uri: product.image }} style={imageStyles} />
-          </Block>
-        </TouchableWithoutFeedback>
+          <TouchableWithoutFeedback //onPress={() => navigation.navigate('Pro', { product: product })}
+          >
+            <Block flex style={[styles.imageContainer, styles.shadow]}>
+              {/*Imagen de producto*/}
+              <Image source={{ uri: product.image }} style={imageStyles} />
+            </Block>
+          </TouchableWithoutFeedback>
 
-        {/*TEXTO DE PRODUCTO*/}
-        <TouchableWithoutFeedback //onPress={() => navigation.navigate('Pro', { product: product })}
-        >
-          <Block flex space="between" style={styles.productDescription}>
-            <Text size={14} style={styles.productTitle}>{product.title}</Text>
-            <Text size={12} muted={!priceColor} color={priceColor}>${product.price}</Text>
-          </Block>
-        </TouchableWithoutFeedback>
-        
+          {/*TEXTO DE PRODUCTO*/}
+          <TouchableWithoutFeedback //onPress={() => navigation.navigate('Pro', { product: product })}
+          >
+            <Block flex space="between" style={styles.productDescription}>
+              <Text size={16} bold={true} style={styles.productTitle}>{product.title}</Text>
+              <Block center>
+                <Button shadowless color="info" style={[styles.button, styles.shadow]}>
+                  Evaluar
+                </Button>
+              </Block>
+            </Block>
+          </TouchableWithoutFeedback>
+        </ImageBackground>
       </Block>
     );
   }
@@ -46,6 +54,9 @@ class Product extends React.Component {
 export default withNavigation(Product);
 
 const styles = StyleSheet.create({
+  bgImage: {
+    flex: 1,
+  },
   product: {
     backgroundColor: theme.COLORS.WHITE,
     marginVertical: theme.SIZES.BASE,
@@ -56,6 +67,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     paddingBottom: 6,
+    color: materialTheme.COLORS.BLANCO, 
   },
   productDescription: {
     padding: theme.SIZES.BASE / 2,
@@ -82,5 +94,8 @@ const styles = StyleSheet.create({
     shadowRadius: 4,
     shadowOpacity: 0.1,
     elevation: 2,
+  },
+  button: {
+    width: 100,
   },
 });

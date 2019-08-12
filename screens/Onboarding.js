@@ -13,6 +13,11 @@ export default class Onboarding extends React.Component {
 
     return (
       <Block flex style={styles.container}>
+      <ImageBackground
+          source={require('../assets/images/background.png')}
+          style={styles.bgImage}
+          resizeMode="cover"
+        >  
         <StatusBar barStyle="light-content" />
         {/*}
         <Block flex center>
@@ -25,13 +30,12 @@ export default class Onboarding extends React.Component {
         <Block flex space="between" style={styles.padded}>
           <Block flex space="around" style={{ zIndex: 2 }}>
             <Block>
-              <Block>
+              <Block center>
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
               </Block>
-              <Text size={16} color={materialTheme.COLORS.NEGRO}>
+              <Text style={styles.text} >
                 Califica tus aplicaciones favoritas!
               </Text>
-
             </Block>
 
             <Block center>
@@ -40,7 +44,7 @@ export default class Onboarding extends React.Component {
                 style={styles.button}
                 color={materialTheme.COLORS.REDLOGO}
                 onPress={() => navigation.navigate('Home')}>
-                INGRESAR COMO ESTUDIANTE v2.0
+                INGRESAR COMO ESTUDIANTE 
               </Button>
               <Button
                 shadowless
@@ -53,23 +57,16 @@ export default class Onboarding extends React.Component {
 
           </Block>
         </Block>
+        </ImageBackground>
       </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  logo: {
-    height: 128,
-    width: 128,
-  },
-  container: {
-    backgroundColor: theme.COLORS.BLANCO,
-  },
-  padded: {
-    paddingHorizontal: theme.SIZES.BASE * 2,
-    position: 'relative',
-    bottom: theme.SIZES.BASE,
+  bgImage: {
+    flex: 1,
+    marginHorizontal: -20,
   },
   button: {
     width: width - theme.SIZES.BASE * 4,
@@ -77,4 +74,22 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     shadowOpacity: 0,
   },
+  image: {
+    justifyContent: 'center',
+  },
+  logo: {
+    height: 128,
+    width: 128,
+  },
+  padded: {
+    paddingHorizontal: theme.SIZES.BASE * 2,
+    position: 'relative',
+    bottom: theme.SIZES.BASE,
+  },
+  text: {
+    color: materialTheme.COLORS.BLANCO, 
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+  } 
 });

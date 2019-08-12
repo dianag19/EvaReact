@@ -16,27 +16,18 @@ export default class Profile extends React.Component {
       <Block flex style={styles.profile}>
         <Block flex>
           <ImageBackground
-            source={{uri: Images.Profile}}
+            source={require('../assets/images/pollo.png')}
             style={styles.profileContainer}
             imageStyle={styles.profileImage}>
             <Block flex style={styles.profileDetails}>
               <Block style={styles.profileTexts}>
-                <Text color="white" size={28} style={{ paddingBottom: 8 }}>Rachel Brown</Text>
+                <Text bold color="white" size={28} style={{ paddingBottom: 8 }}>Diana KT</Text>
                 <Block row space="between">
                   <Block row>
-                    <Block middle style={styles.pro}>
-                      <Text size={16} color="white">Pro</Text>
-                    </Block>
-                    <Text color="white" size={16} muted style={styles.seller}>Seller</Text>
-                    <Text size={16} color={materialTheme.COLORS.WARNING}>
-                      4.8 <Icon name="shape-star" family="GalioExtra" size={14} />
+                    <Text bold color="white" size={24} muted style={styles.seller}>Total puntos: </Text>
+                    <Text bold size={24} color={materialTheme.COLORS.INFO}>
+                       <Icon name="shape-star" family="GalioExtra" size={24} /> 700
                     </Text>
-                  </Block>
-                  <Block>
-                    <Text color={theme.COLORS.MUTED} size={16}>
-                      <Icon name="map-marker" family="font-awesome" color={theme.COLORS.MUTED} size={16} />
-                      {` `} Los Angeles, CA
-                      </Text>
                   </Block>
                 </Block>
               </Block>
@@ -48,21 +39,20 @@ export default class Profile extends React.Component {
           <ScrollView showsVerticalScrollIndicator={false}>
             <Block row space="between" style={{ padding: theme.SIZES.BASE, }}>
               <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>36</Text>
-                <Text muted size={12}>Orders</Text>
+                <Text bold size={15} style={{marginBottom: 8}}>1</Text>
+                <Text muted size={12}>Total evaluaciones</Text>
               </Block>
               <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>5</Text>
-                <Text muted size={12}>Bids & Offers</Text>
+                <Text bold size={15} style={{marginBottom: 8}}>3</Text>
+                <Text muted size={12}>Mi ranking</Text>
               </Block>
               <Block middle>
-                <Text bold size={12} style={{marginBottom: 8}}>2</Text>
-                <Text muted size={12}>Messages</Text>
+                <Text bold size={15} style={{marginBottom: 8}}>100%</Text>
+                <Text muted size={12}>Total progreso</Text>
               </Block>
             </Block>
             <Block row space="between" style={{ paddingVertical: 16, alignItems: 'baseline' }}>
-              <Text size={16}>Recently viewed</Text>
-              <Text size={12} color={theme.COLORS.PRIMARY} onPress={() => this.props.navigation.navigate('Home')}>View All</Text>
+              <Text bold size={20}>Logros</Text>
             </Block>
             <Block style={{ paddingBottom: -HeaderHeight * 2 }}>
               <Block row space="between" style={{ flexWrap: 'wrap' }} >
@@ -89,11 +79,11 @@ const styles = StyleSheet.create({
     marginBottom: -HeaderHeight * 2,
   },
   profileImage: {
-    width: width * 1.1,
+    width: width,
     height: 'auto',
   },
   profileContainer: {
-    width: width,
+    width: width / 2,
     height: height / 2,
   },
   profileDetails: {

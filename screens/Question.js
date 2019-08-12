@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, ImageBackground } from 'react-native';
+import { StyleSheet, Dimensions, ScrollView } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
@@ -47,16 +47,14 @@ export default class Home extends React.Component {
 
   render() {
     return (
-      
-        <Block flex center style={styles.home}>        
-          {this.renderProducts()}          
-        </Block>
+      <Block flex center style={styles.home}>
+        {this.renderProducts()}
+      </Block>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  
   home: {
     width: width,
   },
