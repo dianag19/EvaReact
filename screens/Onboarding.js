@@ -3,32 +3,75 @@ import { ImageBackground, StyleSheet, StatusBar, Dimensions, Image, Platform } f
 import { Block, Button, Text, theme } from 'galio-framework';
 
 const { height, width } = Dimensions.get('screen');
-
+import * as Expo from "expo";
 import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
 
 export default class Onboarding extends React.Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      signedIn: false,
+      name: "",
+      photoUrl: ""
+    }
+  }
+
+  goToHome(navigation) {
+    navigation.navigate('Home')
+  }
+  signIn = async () => {
+    console.log("entra a signin")
+    try {
+      const result = await Expo.Google.logInAsync({
+        androidClientId: "445366866611-g1pbnlb5vdhplmnmolndmpksmqddjsij.apps.googleusercontent.com",
+        scopes: ['profile', 'email'],
+      });
+
+      if (result.type === 'success') {
+        this.setState({
+          signedIn: true,
+          name: result.user.name,
+          photoUrl: result.user.photoUrl
+        }),
+          console.log("despues de navigate dice signed es :" + this.state.signedIn)
+      } else {
+        console.log("cancelled");
+      }
+    } catch (e) {
+      console.log("eror", e)
+    }
+  }
+
   render() {
     const { navigation } = this.props;
+    const { isLoggedIn } = this.state.signedIn;
+    const { signIn } = this.signIn
 
     return (
-      <Block flex style={styles.container}>
+      <Block style={styles.container}>
+        {this.state.signedIn ? (
+          this.goToHome(navigation)
+        ) : (
+          <Login signIn={this.signIn} navigation={navigation}/>
+            )}
+            </Block>
+    )
+  }
+}
+const Login = props => {
+  return (
+    <Block flex style={styles.container}>
       <ImageBackground
-          source={require('../assets/images/background.png')}
-          style={styles.bgImage}
-          resizeMode="cover"
-        >  
+        source={require('../assets/images/background.png')}
+        style={styles.bgImage}
+        resizeMode="cover"
+      >
         <StatusBar barStyle="light-content" />
-        {/*}
-        <Block flex center>
-          <ImageBackground
-            source={{  uri: Images.Onboarding }}
-            style={{ height: height, width: width, marginTop: '-55%', zIndex: 1 }}
-          />
-        </Block>
-        */}
         <Block flex space="between" style={styles.padded}>
-          <Block flex space="around" style={{ zIndex: 2 }}>
+          <Block flex space="around" style={{position:'absolute', zIndex: 2}}
+          >
             <Block>
               <Block center>
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
@@ -43,24 +86,25 @@ export default class Onboarding extends React.Component {
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.REDLOGO}
-                onPress={() => navigation.navigate('Home')}>
-                INGRESAR COMO ESTUDIANTE 
-              </Button>
+                onPress={() => props.signIn()}>
+                {//onPress={() => navigation.navigate('Home')}>
+                }
+                Ingresar con Google
+        </Button>
               <Button
                 shadowless
                 style={styles.button}
                 color={materialTheme.COLORS.PRIMARY}
-                onPress={() => navigation.navigate('Prueba')}>
+                onPress={() => props.navigation.navigate('Prueba')}>
                 INGRESAR COMO ADMINISTRADOR
               </Button>
             </Block>
 
           </Block>
         </Block>
-        </ImageBackground>
-      </Block>
-    );
-  }
+      </ImageBackground>
+    </Block>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -87,9 +131,9 @@ const styles = StyleSheet.create({
     bottom: theme.SIZES.BASE,
   },
   text: {
-    color: materialTheme.COLORS.BLANCO, 
+    color: materialTheme.COLORS.NEGRO,
     fontSize: 18,
-    fontWeight: 'bold',
+    //fontWeight: 'bold',
     textAlign: 'center',
-  } 
+  }
 });
