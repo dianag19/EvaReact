@@ -50,13 +50,15 @@ export default class Onboarding extends React.Component {
     const { signIn } = this.signIn
 
     return (
-      <Block style={styles.container}>
-        {this.state.signedIn ? (
-          this.goToHome(navigation)
-        ) : (
-          <Login signIn={this.signIn} navigation={navigation}/>
-            )}
-            </Block>
+      <Block flex style={styles.container}>
+        <Block flex space="between" >
+            {this.state.signedIn ? (
+              this.goToHome(navigation)
+            ) : (
+              <Login signIn={this.signIn} navigation={navigation}/>
+                )}
+        </Block>
+      </Block>
     )
   }
 }
@@ -70,9 +72,9 @@ const Login = props => {
       >
         <StatusBar barStyle="light-content" />
         <Block flex space="between" style={styles.padded}>
-          <Block flex space="around" style={{position:'absolute', zIndex: 2}}
+          <Block flex space="around" style={{position:'relative', zIndex: 2}}
           >
-            <Block>
+            <Block center>
               <Block center>
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
               </Block>
@@ -87,14 +89,13 @@ const Login = props => {
                 style={styles.button}
                 color={materialTheme.COLORS.REDLOGO}
                 onPress={() => props.signIn()}>
-                {//onPress={() => navigation.navigate('Home')}>
-                }
-                Ingresar con Google
-        </Button>
+                LOGIN CON GOOGLE
+              </Button>
+              <Block />
               <Button
                 shadowless
                 style={styles.button}
-                color={materialTheme.COLORS.PRIMARY}
+                color={materialTheme.COLORS.INFO}
                 onPress={() => props.navigation.navigate('Prueba')}>
                 INGRESAR COMO ADMINISTRADOR
               </Button>
@@ -131,9 +132,9 @@ const styles = StyleSheet.create({
     bottom: theme.SIZES.BASE,
   },
   text: {
-    color: materialTheme.COLORS.NEGRO,
+    color: materialTheme.COLORS.BLANCO,
     fontSize: 18,
-    //fontWeight: 'bold',
+    fontWeight: 'bold',
     textAlign: 'center',
   }
 });
