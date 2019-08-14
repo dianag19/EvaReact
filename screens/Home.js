@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, Dimensions, ScrollView, ImageBackground } from 'react-native';
+import axios from 'axios';
+import { StyleSheet, Dimensions, ScrollView, View, ImageBackground } from 'react-native';
 import { Button, Block, Text, Input, theme } from 'galio-framework';
 
 import { Icon, Product } from '../components/';
@@ -8,6 +9,14 @@ const { width } = Dimensions.get('screen');
 import products from '../constants/products';
 
 export default class Home extends React.Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      aplications: [],
+    }
+  }
+
   renderSearch = () => {
     const { navigation } = this.props;
     const iconCamera = <Icon size={16} color={theme.COLORS.MUTED} name="zoom-in" family="material" />
@@ -25,6 +34,23 @@ export default class Home extends React.Component {
   }
 
 
+  componentDidMount() {
+    axios.get('https://evadjango.herokuapp.com/aplications.json').then(res => {
+      console.log(res)
+      this.setState({ aplications: res.data });
+    });
+  }
+
+  WholeNews() {
+    return this.state.aplications.map(function (app, i) {
+      return (
+
+        <Product product={app} style={{ margin: theme.SIZES.BASE }} />
+
+      );
+    });
+  }
+
   renderProducts = () => {
     return (
       <ScrollView
@@ -32,6 +58,7 @@ export default class Home extends React.Component {
         contentContainerStyle={styles.products}>
         <Block flex>
           {/*<Product product={products[0]} horizontal />*/}
+
           <Block flex row>
             <Product product={products[0]} style={{ marginRight: theme.SIZES.BASE }} />
             <Product product={products[1]} />
@@ -41,22 +68,37 @@ export default class Home extends React.Component {
             <Product product={products[3]} />
           </Block>
         </Block>
+        <Block>
+          <Text>
+            Aplicaciones
+          </Text>
+
+        </Block>
       </ScrollView>
     )
   }
 
   render() {
     return (
-      
-        <Block flex center style={styles.home}>        
-          {this.renderProducts()}          
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        contentContainerStyle={styles.products}>
+
+        <Block flex>
+          {/*<Product product={products[0]} horizontal />*/}
+
+          <Block flex row>
+            {this.WholeNews()}
+          </Block>
+
         </Block>
+      </ScrollView>
     );
   }
 }
 
 const styles = StyleSheet.create({
-  
+
   home: {
     width: width,
   },

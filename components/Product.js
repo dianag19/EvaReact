@@ -37,7 +37,7 @@ class Product extends React.Component {
           <TouchableWithoutFeedback //onPress={() => navigation.navigate('Pro', { product: product })}
           >
             <Block flex space="between" style={styles.productDescription}>
-              <Text size={16} bold={true} style={styles.productTitle}>{product.title}</Text>
+              <Text size={16} bold={true} style={styles.productTitle}>{product.nombre}</Text>
               <Block center>
                 <Button shadowless color="info" style={[styles.button, styles.shadow]}>
                   Evaluar

@@ -137,6 +137,8 @@ export default class Prueba extends React.Component {
           renderItem={({ item }) => <Text>{item.nombre} {item.descripcion}</Text>}
           keyExtractor={({ id }, index) => id}
         />
+
+        
       </View>
     );
   }

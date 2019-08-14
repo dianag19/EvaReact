@@ -89,10 +89,10 @@ const ComponentsStack = createStackNavigator({
 });
 
 const Prueba = createStackNavigator({
-  Prueba: {
+  CrearApp: {
     screen: PruebaScreen,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Prueba" navigation={navigation} />,
+      header: <Header title="Crear aplicación" navigation={navigation} />,
     })
   },
 }, {
@@ -121,7 +121,7 @@ const HomeStack = createStackNavigator({
   },
   transitionConfig,
 });
-
+//BARA LATERAL IZQUIERDA, ITEMS DIFERENTES A SCREEN
 const AppStack = createDrawerNavigator(
   {
     Onboarding: {
@@ -134,7 +134,7 @@ const AppStack = createDrawerNavigator(
       screen: Prueba,
       navigationOptions: {
         drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Prueba" title="Prueba" />
+          <Drawer focused={focused} screen="Prueba" title="Crear aplicación" />
         )
       }
     },
