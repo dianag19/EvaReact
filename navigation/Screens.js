@@ -117,7 +117,7 @@ const QuestionStack = createStackNavigator({
   Question: {
     screen: Question,
     navigationOptions: ({ navigation }) => ({
-      header: <Header title="Question" navigation={navigation} />,
+      header: <Header title="Pregunta" navigation={navigation} />,
     })
   },
 }, {
@@ -155,6 +155,22 @@ const AppStack = createDrawerNavigator(
         drawerLabel: () => {},
       },
     },
+    Home: {
+      screen: HomeStack,
+      navigationOptions: {
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Home" title="Principal" />
+        )
+      }
+    },    
+    Profile: {
+      screen: ProfileStack,
+      navigationOptions: (navOpt) => ({
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Profile" title="Profile" />
+        ),
+      }),
+    },
     Prueba: {
       screen: Prueba,
       navigationOptions: {
@@ -166,25 +182,13 @@ const AppStack = createDrawerNavigator(
     ProgressQuestion: {
       screen: ProgressStack,
       navigationOptions: {
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Progress" title="Progress" />
-        )
+        drawerLabel: () => {},
       }
     },
     Question: {
       screen: QuestionStack,
       navigationOptions: {
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Question" title="Question" />
-        )
-      }
-    },
-    Home: {
-      screen: HomeStack,
-      navigationOptions: {
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Home" title="Principal" />
-        )
+        drawerLabel: () => {},
       }
     },
   /*
@@ -218,15 +222,7 @@ const AppStack = createDrawerNavigator(
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Pro" title="New Collection" />
         ),
-      }),*/
-    Profile: {
-      screen: ProfileStack,
-      navigationOptions: (navOpt) => ({
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Profile" title="Profile" />
-        ),
       }),
-    },/*
     Settings: {
       screen: SettingsStack,
       navigationOptions: (navOpt) => ({

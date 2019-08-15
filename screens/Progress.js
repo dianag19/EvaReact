@@ -23,9 +23,12 @@ export default class Progress extends React.Component {
           <Block flex space="around" style={{position:'relative', zIndex: 2}}
           >
             <Block center>
-              <Block center>
+              <Block >
                 <Image style={styles.logo} source={require('../assets/images/quebrado.png')} />
               </Block>
+              <Text style={styles.text} >
+                Puntos ganados: 100
+              </Text>
               <Text style={styles.text} >
                 Felicitaciones, sigue evaluando!
               </Text>
@@ -35,7 +38,8 @@ export default class Progress extends React.Component {
               <Button
                 shadowless
                 style={styles.button}
-                color={materialTheme.COLORS.REDLOGO}
+                color={materialTheme.COLORS.INFO}
+                onPress={() => this.props.navigation.navigate('Question')}
                 >
                SIGUIENTE
               </Button>
@@ -64,8 +68,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    height: 128,
-    width: 128,
+    height: 158,
+    width: 310,
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,
