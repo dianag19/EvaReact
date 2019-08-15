@@ -11,12 +11,14 @@ import { HeaderHeight } from "../constants/utils";
 export default class Question extends React.Component {
   render() {
 
+    const { navigation } = this.props;
+    
     return (
-    <Block flex style={styles.container}>
-     
+      <Block flex style={styles.container}>
+        
         <StatusBar barStyle="light-content" />
         <Block flex space="between" style={styles.padded}>
-          <Block flex space="around" style={{position:'relative', zIndex: 2}}
+          <Block flex space="around" style={{ position: 'relative', zIndex: 2 }}
           >
             <Block center>
               <Block center>
@@ -33,23 +35,24 @@ export default class Question extends React.Component {
               <Button
                 style={styles.button}
                 color={materialTheme.COLORS.INFO}
-                >
-                SIGUIENTE 
+                onPress={() => navigation.navigate('ProgressQuestion')}>
+
+                SIGUIENTE
               </Button>
             </Block>
             <Block center>
               <Button
                 style={styles.button}
                 color={materialTheme.COLORS.INFO}
-                >
+              >
                 JUSTIFICAR RESPUESTA
               </Button>
             </Block>
           </Block>
         </Block>
-    </Block>
-  )
-}
+      </Block>
+    )
+  }
 }
 
 const styles = StyleSheet.create({

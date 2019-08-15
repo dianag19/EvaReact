@@ -16,6 +16,7 @@ import Header from '../components/Header';
 import { Drawer } from '../components/';
 import PruebaScreen from '../screens/Prueba';
 import Question from '../screens/Question';
+import Progress from '../screens/Progress';
 
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
   transitionSpec: {
@@ -101,6 +102,29 @@ const Prueba = createStackNavigator({
   transitionConfig,
 });
 
+const ProgressStack = createStackNavigator({
+  ProgressQuestion: {
+    screen: Progress,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Progreso" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+const QuestionStack = createStackNavigator({
+  Question: {
+    screen: Question,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Question" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -139,19 +163,27 @@ const AppStack = createDrawerNavigator(
         )
       }
     },
+    ProgressQuestion: {
+      screen: ProgressStack,
+      navigationOptions: {
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Progress" title="Progress" />
+        )
+      }
+    },
+    Question: {
+      screen: QuestionStack,
+      navigationOptions: {
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Question" title="Question" />
+        )
+      }
+    },
     Home: {
       screen: HomeStack,
       navigationOptions: {
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Home" title="Principal" />
-        )
-      }
-    },
-    Question: {
-      screen: Question,
-      navigationOptions: {
-        drawerLabel: ({focused}) => (
-          <Drawer focused={focused} screen="Question" title="Pregunta # " />
         )
       }
     },

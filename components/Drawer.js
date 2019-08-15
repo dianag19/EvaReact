@@ -37,6 +37,14 @@ class DrawerItem extends React.Component {
             family="GalioExtra"
             color={focused ? 'white' : materialTheme.COLORS.MUTED} />
         );
+        case 'Question':
+        return (
+          <Icon
+            size={16}
+            name="shop"
+            family="GalioExtra"
+            color={focused ? 'white' : materialTheme.COLORS.MUTED} />
+        );
       case 'Principal':
         return (
           <Icon

@@ -18,13 +18,13 @@ export default class Progress extends React.Component {
         style={styles.bgImage}
         resizeMode="cover"
       >
-        <StatusBar barStyle="light-content" />
+        {/*<StatusBar barStyle="light-content" />*/}
         <Block flex space="between" style={styles.padded}>
           <Block flex space="around" style={{position:'relative', zIndex: 2}}
           >
             <Block center>
               <Block center>
-                <Image style={styles.logo} source={require('../assets/images/Quebrado.png')} />
+                <Image style={styles.logo} source={require('../assets/images/quebrado.png')} />
               </Block>
               <Text style={styles.text} >
                 Felicitaciones, sigue evaluando!
