@@ -6,47 +6,44 @@ const { height, width } = Dimensions.get('screen');
 import * as Expo from "expo";
 import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
-import { HeaderHeight } from "../constants/utils";
 
-export default class Question extends React.Component {
+export default class Progress extends React.Component {
+
   render() {
-
-    return (
+    
+  return (
     <Block flex style={styles.container}>
-     
+      <ImageBackground
+        source={require('../assets/images/background.png')}
+        style={styles.bgImage}
+        resizeMode="cover"
+      >
         <StatusBar barStyle="light-content" />
         <Block flex space="between" style={styles.padded}>
           <Block flex space="around" style={{position:'relative', zIndex: 2}}
           >
             <Block center>
               <Block center>
-                <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
+                <Image style={styles.logo} source={require('../assets/images/Quebrado.png')} />
               </Block>
-              <Text bold style={styles.text} >
-                ¿Qué sentiste cuando usaste la aplicación +nombreAplicacion?
+              <Text style={styles.text} >
+                Felicitaciones, sigue evaluando!
               </Text>
             </Block>
-            <Block center>
-              <Image style={styles.image} source={require('../assets/images/Feliz.png')} />
-            </Block>
+
             <Block center>
               <Button
+                shadowless
                 style={styles.button}
-                color={materialTheme.COLORS.INFO}
+                color={materialTheme.COLORS.REDLOGO}
                 >
-                SIGUIENTE 
+               SIGUIENTE
               </Button>
             </Block>
-            <Block center>
-              <Button
-                style={styles.button}
-                color={materialTheme.COLORS.INFO}
-                >
-                JUSTIFICAR RESPUESTA
-              </Button>
-            </Block>
+
           </Block>
         </Block>
+      </ImageBackground>
     </Block>
   )
 }
@@ -65,8 +62,6 @@ const styles = StyleSheet.create({
   },
   image: {
     justifyContent: 'center',
-    height: 168,
-    width: 138,
   },
   logo: {
     height: 128,
@@ -78,7 +73,7 @@ const styles = StyleSheet.create({
     bottom: theme.SIZES.BASE,
   },
   text: {
-    color: materialTheme.COLORS.NEGRO,
+    color: materialTheme.COLORS.BLANCO,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',

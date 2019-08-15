@@ -15,6 +15,7 @@ import Menu from './Menu';
 import Header from '../components/Header';
 import { Drawer } from '../components/';
 import PruebaScreen from '../screens/Prueba';
+import Question from '../screens/Question';
 
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
   transitionSpec: {
@@ -146,6 +147,15 @@ const AppStack = createDrawerNavigator(
         )
       }
     },
+    Question: {
+      screen: Question,
+      navigationOptions: {
+        drawerLabel: ({focused}) => (
+          <Drawer focused={focused} screen="Question" title="Pregunta # " />
+        )
+      }
+    },
+  /*
     Woman: {
       screen: ProScreen,
       navigationOptions: (navOpt) => ({
@@ -176,8 +186,7 @@ const AppStack = createDrawerNavigator(
         drawerLabel: ({focused}) => (
           <Drawer focused={focused} screen="Pro" title="New Collection" />
         ),
-      }),
-    },
+      }),*/
     Profile: {
       screen: ProfileStack,
       navigationOptions: (navOpt) => ({
@@ -185,7 +194,7 @@ const AppStack = createDrawerNavigator(
           <Drawer focused={focused} screen="Profile" title="Profile" />
         ),
       }),
-    },
+    },/*
     Settings: {
       screen: SettingsStack,
       navigationOptions: (navOpt) => ({
@@ -223,7 +232,7 @@ const AppStack = createDrawerNavigator(
           <Drawer focused={focused} screen="Pro" title="Sign Up" />
         ),
       }),
-    },
+    },*/
   },
   Menu
 );

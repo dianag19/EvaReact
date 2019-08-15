@@ -16,17 +16,23 @@ export default class Profile extends React.Component {
       <Block flex style={styles.profile}>
         <Block flex>
           <ImageBackground
-            source={require('../assets/images/pollo.png')}
+            source={require('../assets/images/background.png')}
             style={styles.profileContainer}
-            imageStyle={styles.profileImage}>
-            <Block flex style={styles.profileDetails}>
+            imageStyle={styles.profileImage}>            
+            <Block center style={styles.profileDetails}>    
+              <Block center>
+                <Image
+                  source={require('../assets/images/pollo.png')}
+                  style={styles.avatar}
+                />
+              </Block>          
               <Block style={styles.profileTexts}>
-                <Text bold color="white" size={28} style={{ paddingBottom: 8 }}>Diana KT</Text>
+                <Text bold color="white" size={22} style={{ paddingBottom: 8 }}>Diana Gomez</Text>
                 <Block row space="between">
                   <Block row>
-                    <Text bold color="white" size={24} muted style={styles.seller}>Total puntos: </Text>
-                    <Text bold size={24} color={materialTheme.COLORS.INFO}>
-                       <Icon name="shape-star" family="GalioExtra" size={24} /> 700
+                    <Text bold color="white" size={20} >Total puntos: </Text>
+                    <Text bold size={20} color={materialTheme.COLORS.BLANCO}>
+                       <Icon name="shape-star" family="GalioExtra" size={20} /> 700
                     </Text>
                   </Block>
                 </Block>
@@ -74,6 +80,15 @@ export default class Profile extends React.Component {
 }
 
 const styles = StyleSheet.create({
+  avatar:{
+    width: 100,
+    height: 100,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  avatarCenter:{
+    justifyContent: 'center',    
+  },
   profile: {
     marginTop: Platform.OS === 'android' ? -HeaderHeight : 0,
     marginBottom: -HeaderHeight * 2,

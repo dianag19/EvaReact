@@ -1,6 +1,6 @@
 import React from "react";
 import { DrawerItems } from 'react-navigation';
-import { TouchableWithoutFeedback, ScrollView, StyleSheet, Dimensions, Image } from "react-native";
+import { TouchableWithoutFeedback, ScrollView, StyleSheet, Dimensions, Image, ImageBackground } from "react-native";
 import { Block, Text, theme } from "galio-framework";
 
 import { Icon } from '../components/';
@@ -10,12 +10,17 @@ const { width } = Dimensions.get('screen');
 
 const Drawer = (props) => (
   <Block style={styles.container} forceInset={{ top: 'always', horizontal: 'never' }}>
-    <Block flex={0.2} style={styles.header}>
+    <Block flex={0.3} style={styles.header}>
+      <ImageBackground
+          source={require('../assets/images/background.png')}
+          style={styles.bgImage}
+          resizeMode="cover"
+        >
 
       {/*IMAGEN DE PERFIL EN LA BARRA(IMG PERFIL Y NOMBRE) */}
       <TouchableWithoutFeedback //onPress={() => props.navigation.navigate('Profile')} 
       >
-        <Block style={styles.profile}>
+        <Block center style={styles.profile}>
           <Image source={{ uri: props.profile.avatar}} style={styles.avatar} />
           <Text h5 color="white">{props.profile.name}</Text>
         </Block>
@@ -23,15 +28,12 @@ const Drawer = (props) => (
 
       {/*PLAN PRO DE PROFILE, SELLER Y RANKING(ESTRELLITAS)*/}
       <Block row>
-        <Block middle style={styles.pro}>
-          <Text size={16} color="white">{props.profile.plan}</Text>
-        </Block>
-        <Text size={16} muted style={styles.seller}>{props.profile.type}</Text>
-        <Text size={16} color={materialTheme.COLORS.WARNING}>
-          {props.profile.rating} <Icon name="shape-star" family="GalioExtra" size={14} />
+        <Text size={18} style={styles.seller}>Total puntos: </Text>
+        <Text size={18} color={materialTheme.COLORS.BLANCO}><Icon name="shape-star" family="GalioExtra" size={14} />
+          700 
         </Text>
       </Block>
-
+      </ImageBackground>
     </Block>
 
     <Block flex>
@@ -47,8 +49,8 @@ const Drawer = (props) => (
 const profile = {
   avatar: Images.Profile,
   name: 'Diana Gomez',
-  type: 'Seller',
-  plan: 'Pro',
+  //type: 'Seller',
+  //plan: 'Pro',
   rating: 5.0
 };
 
@@ -81,11 +83,15 @@ const Menu = {
 };
 
 const styles = StyleSheet.create({
+  bgImage: {
+    marginHorizontal: -27,
+    height: 150,
+  },
   container: {
     flex: 1,
   },
   header: {
-    backgroundColor: '#4B1958',
+    //backgroundColor: '#4B1958',
     paddingHorizontal: 28,
     paddingBottom: theme.SIZES.BASE,
     paddingTop: theme.SIZES.BASE * 2,
@@ -99,8 +105,8 @@ const styles = StyleSheet.create({
     marginBottom: theme.SIZES.BASE / 2,
   },
   avatar: {
-    height: 40,
-    width: 40,
+    height: 50,
+    width: 50,
     borderRadius: 20,
     marginBottom: theme.SIZES.BASE,
   },
@@ -114,6 +120,7 @@ const styles = StyleSheet.create({
   },
   seller: {
     marginRight: 16,
+    color: materialTheme.COLORS.BLANCO,
   }
 });
 
