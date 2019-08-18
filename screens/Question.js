@@ -1,6 +1,7 @@
 import React from 'react';
-import { ImageBackground, StyleSheet, StatusBar, Dimensions, Image, Platform, Modal, View, TouchableHighlight, Alert, TextInput } from 'react-native';
+import { ImageBackground, SafeAreaView, CheckBox, StyleSheet, StatusBar, Dimensions, Image, Platform, Modal, View, TouchableHighlight, Alert, TextInput } from 'react-native';
 import { Block, Button, Text, theme } from 'galio-framework';
+import Carousel from 'react-native-snap-carousel';
 
 const { height, width } = Dimensions.get('screen');
 import * as Expo from "expo";
@@ -9,9 +10,39 @@ import Images from '../constants/Images';
 import { HeaderHeight } from "../constants/utils";
 
 export default class Question extends React.Component {
-   state = {
-    modalVisible: false,
-  };
+ 
+  constructor(props){
+    super(props);
+    this.state = {
+      modalVisible: false,
+        activeIndex:0,
+        carouselItems: [
+        {
+            title:"Feliz"
+        },
+        {
+            title:"Triste"
+        },
+        {
+            title:"Satisfecho"
+        },
+        {
+            title:"Insatisfecho"
+        },
+        {
+            title:"Decepcionado"
+        }
+    ]}    
+  };  
+
+  _renderItem({item,index}){
+    return (
+        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}> 
+          <Image style={styles.image} source={require('../assets/images/Feliz.png')} />
+          <Text size={20} bold={true}>{item.title}</Text>          
+        </View>
+    )
+  }
 
   setModalVisible(visible) {
     this.setState({modalVisible: visible});
@@ -19,10 +50,10 @@ export default class Question extends React.Component {
 
   render() {
 
-    const { navigation } = this.props;
+    const { navigation, style } = this.props;
     
     return (
-      <Block flex style={styles.container}>
+      <Block flex >
         
         <StatusBar barStyle="light-content" />
         <Block flex space="between" style={styles.padded}>
@@ -36,27 +67,66 @@ export default class Question extends React.Component {
                 ¿Qué sentiste cuando usaste la aplicación +nombreAplicacion?
               </Text>
             </Block>
-            <Block center>
-              <Image style={styles.image} source={require('../assets/images/Feliz.png')} />
-            </Block>
-            <Block center>
-              <Button
-                style={styles.button}
-                color={materialTheme.COLORS.INFO}
-                onPress={() => {this.setModalVisible(true); }}
-              >
-                JUSTIFICAR RESPUESTA
-              </Button>
-            </Block>
-            <Block center>
-              <Button
-                style={styles.button}
-                color={materialTheme.COLORS.INFO}
-                onPress={() => this.props.navigation.navigate('ProgressQuestion')}>
+            
 
-                SIGUIENTE
-              </Button>
-            </Block>            
+            <SafeAreaView style={styles.container}>           
+              <TouchableHighlight
+                onPress={
+                    () => { this.carousel._snapToItem(this.state.activeIndex-1)}
+                }>
+                <Image source={require('../assets/images/leftarrow.png')}/>
+              </TouchableHighlight>
+
+              <View>
+                <Carousel
+                  ref={ref => this.carousel = ref}
+                  data={this.state.carouselItems}
+                  sliderWidth={250}
+                  itemWidth={250}
+                  renderItem={this._renderItem}
+                  onSnapToItem = { index => this.setState({activeIndex:index}) }
+                />
+              </View>
+              
+              <TouchableHighlight            
+                  onPress={
+                      () => { this.carousel._snapToItem(this.state.activeIndex+1)}
+                  }>
+                  <Image source={require('../assets/images/rightarrow.png')}/>                
+              </TouchableHighlight>         
+            </SafeAreaView>
+            <View>
+              <Block center>                
+                <CheckBox
+                  value={this.state.checked}
+                  onValueChange={() => this.setState({ checked: !this.state.checked })}
+                />
+              </Block> 
+            </View>
+
+            <View style={{
+              flexDirection: 'column',
+              justifyContent: 'space-around',
+              }}>
+              <Block center>
+                <Button
+                  style={styles.button}
+                  color={materialTheme.COLORS.INFO}
+                  onPress={() => {this.setModalVisible(true); }}
+                >
+                  JUSTIFICAR RESPUESTA
+                </Button>
+              </Block>
+              <Block center>
+                <Button
+                  style={styles.button}
+                  color={materialTheme.COLORS.INFO}
+                  onPress={() => this.props.navigation.navigate('ProgressQuestion')}>
+
+                  SIGUIENTE
+                </Button>
+              </Block>            
+            </View>
 
              <View style={{marginTop: 22}}>
               <Modal
@@ -109,25 +179,51 @@ const styles = StyleSheet.create({
     flex: 1,
     marginHorizontal: -20,
   },
+  container: {
+    flex: 1,
+    flexDirection:'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   button: {
     width: width - theme.SIZES.BASE * 4,
     height: theme.SIZES.BASE * 3,
     shadowRadius: 0,
     shadowOpacity: 0,
   },
+  
   image: {
     justifyContent: 'center',
     height: 168,
     width: 138,
   },
   logo: {
-    height: 128,
-    width: 128,
+    height: 98,
+    width: 98,
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,
     position: 'relative',
     bottom: theme.SIZES.BASE,
+  },
+  product: {
+    backgroundColor: theme.COLORS.WHITE,
+    marginVertical: theme.SIZES.BASE,
+    borderWidth: 0,
+    minHeight: 114,
+  },
+  productTitle: {
+    flex: 1,
+    flexWrap: 'wrap',
+    paddingBottom: 6,
+    color: materialTheme.COLORS.NEGRO, 
+  },
+  shadow: {
+    shadowColor: theme.COLORS.BLACK,
+    shadowOffset: { width: 0, height: 2 },
+    shadowRadius: 4,
+    shadowOpacity: 0.1,
+    elevation: 2,
   },
   text: {
     color: materialTheme.COLORS.NEGRO,

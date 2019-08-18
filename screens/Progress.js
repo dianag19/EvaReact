@@ -24,10 +24,10 @@ export default class Progress extends React.Component {
           >
             <Block center>
               <Block >
-                <Image style={styles.logo} source={require('../assets/images/quebrado.png')} />
+                <Image style={styles.logo} source={require('../assets/images/saliendo.png')} />
               </Block>
               <Text style={styles.text} >
-                Puntos ganados: 100
+                Puntos ganados: 300
               </Text>
               <Text style={styles.text} >
                 Felicitaciones, sigue evaluando!
@@ -68,8 +68,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    height: 158,
-    width: 310,
+    height: 148,
+    width: 100,
   },
   padded: {
     paddingHorizontal: theme.SIZES.BASE * 2,
