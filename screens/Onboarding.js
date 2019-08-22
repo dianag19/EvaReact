@@ -6,6 +6,7 @@ const { height, width } = Dimensions.get('screen');
 import * as Expo from "expo";
 import materialTheme from '../constants/Theme';
 import Images from '../constants/Images';
+import Profile from './Profile';
 
 export default class Onboarding extends React.Component {
 
@@ -19,6 +20,7 @@ export default class Onboarding extends React.Component {
   }
 
   goToHome(navigation) {
+    
     navigation.navigate('Home')
   }
   signIn = async () => {

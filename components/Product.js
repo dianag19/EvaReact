@@ -8,10 +8,12 @@ import materialTheme from '../constants/Theme';
 const { width } = Dimensions.get('screen');/**Se ajusta al width de la pantalla */
 
 class Product extends React.Component {
+  
+  
   render() {
     const { navigation, product, horizontal, full, style, priceColor, imageStyle } = this.props;
     const imageStyles = [styles.image, full ? styles.fullImage : styles.horizontalImage, imageStyle];
-
+    console.log(product.nombre);
     /**BLOCK ES COMO UN div */
     /**TouchableWithoutFeedback ES SIMILAR A UN BOTON con la posibilidad de tener feedback */
     /**Product.image porque image es pasado como props desde la screen que lo use */
@@ -40,7 +42,8 @@ class Product extends React.Component {
               <Text size={16} bold={true} style={styles.productTitle}>{product.nombre}</Text>
               <Block center>
                 <Button shadowless color="info" style={[styles.button, styles.shadow]}
-                onPress={() => this.props.navigation.navigate('Question')}>
+                onPress={() => this.props.navigation.navigate('Question',{ nombre: product.nombre})}>
+                  
                   Evaluar
                 </Button>
               </Block>

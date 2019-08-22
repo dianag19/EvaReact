@@ -14,6 +14,8 @@ export default class Home extends React.Component {
     super(props);
     this.state = {
       aplications: [],
+      name: '',
+      photo: '',
     }
   }
 
@@ -43,6 +45,7 @@ export default class Home extends React.Component {
 
   WholeNews() {
     return this.state.aplications.map(function (app, i) {
+      console.log("app desde home " + app)
       return (
 
         <Product product={app} style={{ margin: theme.SIZES.BASE }} />

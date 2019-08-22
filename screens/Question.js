@@ -10,51 +10,81 @@ import Images from '../constants/Images';
 import { HeaderHeight } from "../constants/utils";
 
 export default class Question extends React.Component {
- 
-  constructor(props){
+
+  constructor(props) {
     super(props);
     this.state = {
       modalVisible: false,
-        activeIndex:0,
-        carouselItems: [
+      activeIndex: 0,
+      progress: false,
+      questions: [
         {
-            title:"Feliz"
+          description: "Pregunta1"
         },
         {
-            title:"Triste"
+          description: "Pregunta2"
         },
         {
-            title:"Satisfecho"
+          description: "Pregunta3"
+        },
+      ],
+      carouselItems: [
+        {
+          title: "Feliz"
         },
         {
-            title:"Insatisfecho"
+          title: "Triste"
         },
         {
-            title:"Decepcionado"
+          title: "Satisfecho"
+        },
+        {
+          title: "Insatisfecho"
+        },
+        {
+          title: "Decepcionado"
         }
-    ]}    
-  };  
+      ]
+    }
+  };
 
-  _renderItem({item,index}){
+  _renderItem({ item, index }) {
     return (
-        <View style={{flex:1,justifyContent:'center',alignItems:'center'}}> 
-          <Image style={styles.image} source={require('../assets/images/Feliz.png')} />
-          <Text size={20} bold={true}>{item.title}</Text>          
-        </View>
+      <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+        <Image style={styles.image} source={require('../assets/images/Feliz.png')} />
+        <Text size={20} bold={true}>{item.title}</Text>
+      </View>
     )
   }
 
   setModalVisible(visible) {
-    this.setState({modalVisible: visible});
+    this.setState({ modalVisible: visible });
+  }
+  changeQuestion = () => {
+    console.log("entra a changequestion");
+    if (this.state.progress === false) {
+      
+      this.setState({
+        progress: true,
+      })
+      
+    }else{
+      
+      this.setState({
+        progress: false,
+      })
+    }
   }
 
   render() {
 
     const { navigation, style } = this.props;
-    
+    console.log("navigations desde questions :")
+    //navigation.state.params
+
     return (
       <Block flex >
-        
+
         <StatusBar barStyle="light-content" />
         <Block flex space="between" style={styles.padded}>
           <Block flex space="around" style={{ position: 'relative', zIndex: 2 }}
@@ -63,18 +93,18 @@ export default class Question extends React.Component {
               <Block center>
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
               </Block>
-              <Text bold style={styles.text} >
-                ¿Qué sentiste cuando usaste la aplicación +nombreAplicacion?
-              </Text>
+              {//<QuestionItem/>
+              }
+              <Text>Qué sentiste cuándo usaste la aplicación+ nombreAplicacion?</Text>
             </Block>
-            
 
-            <SafeAreaView style={styles.container}>           
+
+            <SafeAreaView style={styles.container}>
               <TouchableHighlight
                 onPress={
-                    () => { this.carousel._snapToItem(this.state.activeIndex-1)}
+                  () => { this.carousel._snapToItem(this.state.activeIndex - 1) }
                 }>
-                <Image source={require('../assets/images/leftarrow.png')}/>
+                <Image source={require('../assets/images/leftarrow.png')} />
               </TouchableHighlight>
 
               <View>
@@ -84,35 +114,35 @@ export default class Question extends React.Component {
                   sliderWidth={250}
                   itemWidth={250}
                   renderItem={this._renderItem}
-                  onSnapToItem = { index => this.setState({activeIndex:index}) }
+                  onSnapToItem={index => this.setState({ activeIndex: index })}
                 />
               </View>
-              
-              <TouchableHighlight            
-                  onPress={
-                      () => { this.carousel._snapToItem(this.state.activeIndex+1)}
-                  }>
-                  <Image source={require('../assets/images/rightarrow.png')}/>                
-              </TouchableHighlight>         
+
+              <TouchableHighlight
+                onPress={
+                  () => { this.carousel._snapToItem(this.state.activeIndex + 1) }
+                }>
+                <Image source={require('../assets/images/rightarrow.png')} />
+              </TouchableHighlight>
             </SafeAreaView>
             <View>
-              <Block center>                
+              <Block center>
                 <CheckBox
                   value={this.state.checked}
                   onValueChange={() => this.setState({ checked: !this.state.checked })}
                 />
-              </Block> 
+              </Block>
             </View>
 
             <View style={{
               flexDirection: 'column',
               justifyContent: 'space-around',
-              }}>
+            }}>
               <Block center>
                 <Button
                   style={styles.button}
                   color={materialTheme.COLORS.INFO}
-                  onPress={() => {this.setModalVisible(true); }}
+                  onPress={() => { this.setModalVisible(true); }}
                 >
                   JUSTIFICAR RESPUESTA
                 </Button>
@@ -121,14 +151,16 @@ export default class Question extends React.Component {
                 <Button
                   style={styles.button}
                   color={materialTheme.COLORS.INFO}
-                  onPress={() => this.props.navigation.navigate('ProgressQuestion')}>
+                  //onPress={() => this.props.navigation.navigate('ProgressQuestion')}
+                  onPress={this.changeQuestion}
+                  >
 
                   SIGUIENTE
                 </Button>
-              </Block>            
+              </Block>
             </View>
 
-             <View style={{marginTop: 22}}>
+            <View style={{ marginTop: 22 }}>
               <Modal
                 animationType="slide"
                 transparent={false}
@@ -136,23 +168,23 @@ export default class Question extends React.Component {
                 onRequestClose={() => {
                   Alert.alert('Modal has been closed.');
                 }}>
-                <View style={{marginTop: 22}}>
+                <View style={{ marginTop: 22 }}>
                   <View>
-                  <Block>
-                    <Text bold style={styles.text} >
-                      ¿Por qué y cuándo sentiste esa(s) emoción(es)?
+                    <Block>
+                      <Text bold style={styles.text} >
+                        ¿Por qué y cuándo sentiste esa(s) emoción(es)?
                     </Text>
-                  </Block>
-                  <Block center>
-                    <View style={{padding: 10}}>
-                      <TextInput
-                        style={{height: 80, padding: 10, fontSize: 20}}
-                        placeholder="Justifica tu respuesta"
-                        onChangeText={(text) => this.setState({text})}
-                        value={this.state.text}
-                      />
-                    </View>
-                  </Block>
+                    </Block>
+                    <Block center>
+                      <View style={{ padding: 10 }}>
+                        <TextInput
+                          style={{ height: 80, padding: 10, fontSize: 20 }}
+                          placeholder="Justifica tu respuesta"
+                          onChangeText={(text) => this.setState({ text })}
+                          value={this.state.text}
+                        />
+                      </View>
+                    </Block>
                     <Block center>
                       <TouchableHighlight
                         onPress={() => {
@@ -173,6 +205,27 @@ export default class Question extends React.Component {
     )
   }
 }
+const QuestionItem = props => {
+  console.log("entra a question item");
+  if (this.state.progress) {
+    /**AQUI VA EL COMPONENTE O COMPONENTES CUANDO UNO DA EN SIGUIENTE Y ES PROGRESO, ES DECIR, PALOMITA Y PUNTOS
+     * COLOCO PROGRESS EN FALSO PARA QUE EN LA SIGUIENTE PREGUNTA, NO ENTRE A ESTE CICLO
+     */
+    this.setState({
+      progress: false,
+    })
+  }else{
+    return this.state.questions.map(function (question, i) {
+      console.log("app desde question " + question)
+      return (
+
+        <Text>{question}</Text>
+
+      );
+
+    });
+  }
+}
 
 const styles = StyleSheet.create({
   bgImage: {
@@ -181,7 +234,7 @@ const styles = StyleSheet.create({
   },
   container: {
     flex: 1,
-    flexDirection:'row',
+    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
   },
@@ -191,7 +244,7 @@ const styles = StyleSheet.create({
     shadowRadius: 0,
     shadowOpacity: 0,
   },
-  
+
   image: {
     justifyContent: 'center',
     height: 168,
@@ -216,7 +269,7 @@ const styles = StyleSheet.create({
     flex: 1,
     flexWrap: 'wrap',
     paddingBottom: 6,
-    color: materialTheme.COLORS.NEGRO, 
+    color: materialTheme.COLORS.NEGRO,
   },
   shadow: {
     shadowColor: theme.COLORS.BLACK,

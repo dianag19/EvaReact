@@ -11,6 +11,15 @@ const { width, height } = Dimensions.get('screen');
 const thumbMeasure = (width - 48 - 32) / 3;
 
 export default class Profile extends React.Component {
+  constructor(props){
+    super(props);
+    
+    this.state = {
+      name: 'DIANA MARCELA GOMEZ CAICEO',
+      photoUrl : '',
+    };
+  }
+
   render() {
     return (
       <Block flex style={styles.profile}>
@@ -27,7 +36,7 @@ export default class Profile extends React.Component {
                 />
               </Block>          
               <Block style={styles.profileTexts}>
-                <Text bold color="white" size={22} style={{ paddingBottom: 8 }}>Diana Gomez</Text>
+                <Text bold color="white" size={22} style={{ paddingBottom: 8 }}>{this.state.name}</Text>
                 <Block row space="between">
                   <Block row>
                     <Text bold color="white" size={20} >Total puntos: </Text>
