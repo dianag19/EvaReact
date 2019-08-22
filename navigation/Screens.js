@@ -17,6 +17,14 @@ import { Drawer } from '../components/';
 import PruebaScreen from '../screens/Prueba';
 import Question from '../screens/Question';
 import Progress from '../screens/Progress';
+import Question2 from '../screens/Question2';
+import Progress2 from '../screens/Progress2';
+import Question3 from '../screens/Question3';
+import Progress3 from '../screens/Progress3';
+import Question4 from '../screens/Question4';
+import Progress4 from '../screens/Progress4';
+import Question5 from '../screens/Question5';
+import Progress5 from '../screens/Progress5';
 
 const transitionConfig = (transitionProps, prevTransitionProps) => ({
   transitionSpec: {
@@ -125,6 +133,98 @@ const QuestionStack = createStackNavigator({
   transitionConfig,
 });
 
+const ProgressStack2 = createStackNavigator({
+  ProgressQuestion2: {
+    screen: Progress2,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Progreso 2" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+const QuestionStack2 = createStackNavigator({
+  Question2: {
+    screen: Question2,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Pregunta 2" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+
+const ProgressStack3 = createStackNavigator({
+  ProgressQuestion3: {
+    screen: Progress3,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Progreso 3" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+const QuestionStack3 = createStackNavigator({
+  Question3: {
+    screen: Question3,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Pregunta 3" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+
+const ProgressStack4 = createStackNavigator({
+  ProgressQuestion4: {
+    screen: Progress4,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Progreso 4" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+const QuestionStack4 = createStackNavigator({
+  Question4: {
+    screen: Question4,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Pregunta 4" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+
+const ProgressStack5 = createStackNavigator({
+  ProgressQuestion5: {
+    screen: Progress5,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Progreso 5" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+const QuestionStack5 = createStackNavigator({
+  Question5: {
+    screen: Question5,
+    navigationOptions: ({ navigation }) => ({
+      header: <Header title="Pregunta 5" navigation={navigation} />,
+    })
+  },
+}, {
+  cardStyle: { backgroundColor: '#EEEEEE', },
+  transitionConfig,
+});
+
 const HomeStack = createStackNavigator({
   Home: {
     screen: HomeScreen,
@@ -187,6 +287,54 @@ const AppStack = createDrawerNavigator(
     },
     Question: {
       screen: QuestionStack,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    ProgressQuestion2: {
+      screen: ProgressStack2,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    Question2: {
+      screen: QuestionStack2,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    ProgressQuestion3: {
+      screen: ProgressStack3,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    Question3: {
+      screen: QuestionStack3,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    ProgressQuestion4: {
+      screen: ProgressStack4,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    Question4: {
+      screen: QuestionStack4,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    ProgressQuestion5: {
+      screen: ProgressStack5,
+      navigationOptions: {
+        drawerLabel: () => {},
+      }
+    },
+    Question5: {
+      screen: QuestionStack5,
       navigationOptions: {
         drawerLabel: () => {},
       }

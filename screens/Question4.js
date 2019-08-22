@@ -18,43 +18,22 @@ export default class Question extends React.Component {
         activeIndex:0,
         carouselItems: [
         {
-            title:"Feliz"
+            title:"Perdí mi tiempo usándolo"
         },
         {
-            title:"Triste"
+            title:"Me ayudaría"
         },
         {
-            title:"Satisfecho"
+            title:"Me es útil"
         },
         {
-            title:"Insatisfecho"
+            title:"No me es útil"
         },
         {
-            title:"Decepcionado"
+            title:"Podría ser útil"
         },
         {
-            title:"Emocionado"
-        },
-        {
-            title:"Aburrido"
-        },
-        {
-            title:"Enojado"
-        },
-        {
-            title:"Interesado"
-        },
-        {
-            title:"Confundido"
-        },
-        {
-            title:"Impaciente"
-        },
-        {
-            title:"Inseguro"
-        },
-        {
-            title:"Perdido"
+            title:"No entendí la utilidad del sistema"
         }
     ]}    
   };  
@@ -62,7 +41,7 @@ export default class Question extends React.Component {
   _renderItem({item,index}){
     return (
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}}> 
-          <Image style={styles.image} source={require('../assets/images/Huevo-Feliz.png')} />
+          <Image style={styles.image} source={require('../assets/images/Paloma-Feliz.png')} />
           <Text size={20} bold={true}>{item.title}</Text>          
         </View>
     )
@@ -88,7 +67,7 @@ export default class Question extends React.Component {
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
               </Block>
               <Text bold style={styles.text} >
-                ¿Qué sentiste cuando usaste la aplicación +nombreAplicacion?
+                ¿Fue útil usar la aplicación +nombreAplicacion?
               </Text>
             </Block>
             
@@ -145,7 +124,7 @@ export default class Question extends React.Component {
                 <Button
                   style={styles.button}
                   color={materialTheme.COLORS.INFO}
-                  onPress={() => this.props.navigation.navigate('ProgressQuestion')}>
+                  onPress={() => this.props.navigation.navigate('ProgressQuestion4')}>
 
                   SIGUIENTE
                 </Button>
@@ -218,8 +197,8 @@ const styles = StyleSheet.create({
   
   image: {
     justifyContent: 'center',
-    height: 188,
-    width: 148,
+    height: 230,
+    width: 250,
   },
   logo: {
     height: 98,

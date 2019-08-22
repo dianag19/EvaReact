@@ -18,43 +18,25 @@ export default class Question extends React.Component {
         activeIndex:0,
         carouselItems: [
         {
-            title:"Feliz"
+            title:"Me gusta usarlo"
         },
         {
-            title:"Triste"
+            title:"No lo usaría de nuevo"
         },
         {
-            title:"Satisfecho"
+            title:"Lo usaría de nuevo"
         },
         {
-            title:"Insatisfecho"
+            title:"Nunca lo recomendaría a nadie"
         },
         {
-            title:"Decepcionado"
+            title:"Usaría otro sistema"
         },
         {
-            title:"Emocionado"
+            title:"Lo usaría si es necesario"
         },
         {
-            title:"Aburrido"
-        },
-        {
-            title:"Enojado"
-        },
-        {
-            title:"Interesado"
-        },
-        {
-            title:"Confundido"
-        },
-        {
-            title:"Impaciente"
-        },
-        {
-            title:"Inseguro"
-        },
-        {
-            title:"Perdido"
+            title:"Lo usaría"
         }
     ]}    
   };  
@@ -88,7 +70,7 @@ export default class Question extends React.Component {
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
               </Block>
               <Text bold style={styles.text} >
-                ¿Qué sentiste cuando usaste la aplicación +nombreAplicacion?
+                ¿Deseas usar la aplicación +nombreAplicacion?
               </Text>
             </Block>
             
@@ -145,7 +127,7 @@ export default class Question extends React.Component {
                 <Button
                   style={styles.button}
                   color={materialTheme.COLORS.INFO}
-                  onPress={() => this.props.navigation.navigate('ProgressQuestion')}>
+                  onPress={() => this.props.navigation.navigate('ProgressQuestion2')}>
 
                   SIGUIENTE
                 </Button>

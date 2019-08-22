@@ -31,7 +31,7 @@ export default class Profile extends React.Component {
             <Block center style={styles.profileDetails}>    
               <Block center>
                 <Image
-                  source={require('../assets/images/pollo.png')}
+                  source={require('../assets/images/Paloma-Feliz.png')}
                   style={styles.avatar}
                 />
               </Block>          
@@ -73,11 +73,13 @@ export default class Profile extends React.Component {
               <Block row space="between" style={{ flexWrap: 'wrap' }} >
                 {Images.Viewed.map((img, imgIndex) => (
                   <Image
+                    
                     source={{ uri: img }}
                     key={`viewed-${img}`}  
                     resizeMode="cover"
                     style={styles.thumb}
                   />
+                  
                 ))}
               </Block>
             </Block>

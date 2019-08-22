@@ -18,43 +18,31 @@ export default class Question extends React.Component {
         activeIndex:0,
         carouselItems: [
         {
-            title:"Feliz"
+            title:"Fue fácil de usar"
         },
         {
-            title:"Triste"
+            title:"Entendí como funciona"
         },
         {
-            title:"Satisfecho"
+            title:"Cometí errores"
         },
         {
-            title:"Insatisfecho"
+            title:"Fue fácil aprender a usarlo"
         },
         {
-            title:"Decepcionado"
+            title:"Abandoné la tarea"
         },
         {
-            title:"Emocionado"
+            title:"Fue díficil aprender a usarlor"
         },
         {
-            title:"Aburrido"
+            title:"Estaba perdido"
         },
         {
-            title:"Enojado"
+            title:"No entiendo como funciona"
         },
         {
-            title:"Interesado"
-        },
-        {
-            title:"Confundido"
-        },
-        {
-            title:"Impaciente"
-        },
-        {
-            title:"Inseguro"
-        },
-        {
-            title:"Perdido"
+            title:"No entiendo el idioma del sistema"
         }
     ]}    
   };  
@@ -62,7 +50,7 @@ export default class Question extends React.Component {
   _renderItem({item,index}){
     return (
         <View style={{flex:1,justifyContent:'center',alignItems:'center'}}> 
-          <Image style={styles.image} source={require('../assets/images/Huevo-Feliz.png')} />
+          <Image style={styles.image} source={require('../assets/images/Palomita-Feliz.png')} />
           <Text size={20} bold={true}>{item.title}</Text>          
         </View>
     )
@@ -88,7 +76,7 @@ export default class Question extends React.Component {
                 <Image style={styles.logo} source={require('../assets/images/evalogo.png')} />
               </Block>
               <Text bold style={styles.text} >
-                ¿Qué sentiste cuando usaste la aplicación +nombreAplicacion?
+                ¿Fue fácil usar la aplicación +nombreAplicacion?
               </Text>
             </Block>
             
@@ -145,7 +133,7 @@ export default class Question extends React.Component {
                 <Button
                   style={styles.button}
                   color={materialTheme.COLORS.INFO}
-                  onPress={() => this.props.navigation.navigate('ProgressQuestion')}>
+                  onPress={() => this.props.navigation.navigate('ProgressQuestion3')}>
 
                   SIGUIENTE
                 </Button>
@@ -219,7 +207,7 @@ const styles = StyleSheet.create({
   image: {
     justifyContent: 'center',
     height: 188,
-    width: 148,
+    width: 168,
   },
   logo: {
     height: 98,
